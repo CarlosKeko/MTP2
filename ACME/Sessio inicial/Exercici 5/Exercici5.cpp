@@ -6,14 +6,14 @@
 using namespace std;
 
 struct Llibre {
-    string titol, ISBN, editorial, autor;
+    string titol, ISBN, editorial, autor, estoc;
 
 };
 
-struct Llibreria {
-    string estoc, quantitat;
+// struct Llibreria {
+//     string estoc, quantitat;
 
-};
+// };
 
 const int MAX_L = 10000;
 typedef Llibre Vec_llibre[MAX_L];
@@ -25,9 +25,10 @@ struct Vector_llibres_n {
 
 Llibre llegir_llibre(ifstream &f_in) {
     Llibre llib;
-    f_in >> llib.titol;
+    f_in>> llib.titol;
     if (not f_in.eof()) {
-        f_in >> llib.ISBN >> llib.editorial >> llib.autor;
+        f_in>>llib.ISBN>>llib.editorial>>llib.autor>>llib.estoc;
+
     }
 
     return llib;
@@ -67,7 +68,7 @@ void omplir_fitxer (Vector_llibres_n& llibres) {
 };
 
 void mostrar_llibre(const Llibre& llib) {
-    cout  << " " << llib.titol << ", " << llib.autor << " Ed. " << llib.editorial << " - " << llib.ISBN << endl;
+    cout  << llib.estoc << " " << llib.titol << ", " << llib.autor << " Ed. " << llib.editorial << " - " << llib.ISBN << endl;
 }
 
 void mostrar_inventari_alfabetic(const Vector_llibres_n& llibres) {
