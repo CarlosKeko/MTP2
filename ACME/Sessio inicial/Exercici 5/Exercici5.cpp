@@ -102,28 +102,6 @@ void ordenar_isbn(Vector_llibres_n& llibres) {
     bool dentro = true;
 
     while (dentro) {
-        // if (i + 1 < llibres.n && auxLlibre.ISBN > llibres.vec[i + 1].ISBN) { 
-        //     llibres.vec[pos] = llibres.vec[i + 1];
-        //     llibres.vec[i + 1] = auxLlibre;
-        //     auxLlibre = llibres.vec[pos];
-
-        // } 
-
-        // posVector = 0;
-        // auxLlibre = llibres.vec[i];
-        // pos = i;
-
-        // while (posVector < llibres.n) {
-        //     if (posVector != pos) {
-        //         if (llibres.vec[pos].ISBN > llibres.vec[posVector].ISBN) { 
-        //             llibres.vec[pos] = llibres.vec[posVector];
-        //             llibres.vec[posVector] = auxLlibre;
-
-        //         }
-        //     }
-        //     posVector++;
-        // }
-
         if (i < llibres.n) {
             if (llibres.vec[pos].ISBN > llibres.vec[i].ISBN) {
                 auxLlibre = llibres.vec[pos];
