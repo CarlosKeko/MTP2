@@ -195,7 +195,7 @@ int buscar_tutor (const Vector_tutors_n& tutors, string especialitat) {
                 posicio = i;
 
             }else {
-                if (stoi(tutors.vec[posicio].nombreProjectes) > stoi(tutors.vec[i].nombreProjectes) || tutors.vec[i].codi < tutors.vec[posicio].codi && tutors.vec[posicio].nombreProjectes == tutors.vec[i].nombreProjectes) {
+                if (stoi(tutors.vec[posicio].nombreProjectes) > stoi(tutors.vec[i].nombreProjectes) || tutors.vec[i].codi > tutors.vec[posicio].codi && tutors.vec[posicio].nombreProjectes == tutors.vec[i].nombreProjectes) {
                     posicio = i;
 
                 } 
@@ -283,11 +283,15 @@ void moure_vector_projectes (Vector_projectes_n &projectes, int pos) {
 
 }
 
-//TENGO QUE HACER LO DE QUITAR PROYECTOS A LOS PROFES
-void baixa_pfg (Vector_projectes_n &projectes) {
+void restar_projectes_tutor (Vector_tutors_n &tutors, int pos) {
+    tutors.vec[pos].nombreProjectes = std::to_string(stoi(tutors.vec[pos].nombreProjectes) - 1);
+
+}
+
+void baixa_pfg (Vector_projectes_n &projectes, Vector_tutors_n &tutors) {
     string codiPFG;
-    bool trobat;
-    int pos;
+    bool trobat, trobatTutor;
+    int pos, posTutor;
 
     cout << "Codi de l'alumne:" <<endl;
     cin >> codiPFG;
@@ -298,7 +302,9 @@ void baixa_pfg (Vector_projectes_n &projectes) {
         cout << "Codi inexistent" <<endl;
 
     }else {
+        cerca_dicotomica_tutors(tutors, projectes.vec[pos].codiTutor, trobatTutor, posTutor);
         moure_vector_projectes(projectes, pos);
+        restar_projectes_tutor(tutors, posTutor);
         cout << "PFG eliminat" <<endl;
 
     }
@@ -331,7 +337,7 @@ int main()
         if (opcio == 'A')
             alta_pfg(projectes, tutors);
         else if (opcio == 'B')
-            baixa_pfg(projectes);
+            baixa_pfg(projectes, tutors);
         else if (opcio == 'P')
             mostrar_tutors(tutors);
         else if (opcio == 'C')
