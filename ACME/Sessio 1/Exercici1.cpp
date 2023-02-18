@@ -10,22 +10,27 @@ struct Tutor
     string codi, nomCognom, assignatura, nombreProjectes, projectesDefensats;
 };
 
-struct PFGNoCompletats
+struct Projectes
 {
     string codiAlumne, nomCognomAlumne, titolProjecte, especialitat, codiTutor, nota;
 };
 
-struct PFGCompletats
-{
-    string codiAlumne, nomCognomAlumne, titolProjecte, especialitat, codiTutor, nota;
-};
 
-const int MAX_L = 100;
-typedef Tutor Vec_tutors[MAX_L];
+const int MAX_T = 100;
+typedef Tutor Vec_tutors[MAX_T];
 
 struct Vector_tutors_n
 {
     Vec_tutors vec;
+    int n;
+};
+
+const int MAX_P = 1000;
+typedef Projectes Vec_Projectes[MAX_P];
+
+struct Vector_projectes_n
+{
+    Vec_Projectes vec;
     int n;
 };
 
@@ -63,6 +68,55 @@ void inserir_tutor(Vector_tutors_n &tutors, Tutor nouTutor)
     nouTutor.projectesDefensats = "0";
     tutors.vec[i + 1] = nouTutor;
     tutors.n++;
+}
+
+void cerca_dicotomica_tutors (const Vector_tutors_n& tutors, string codi, bool& trobat, int& pos) {
+    trobat = false;
+    int esq = 0;
+    int dret = tutors.n - 1;
+    int mig;
+
+    while (not trobat && esq <= dret) {
+        mig = (esq + dret)/2;
+        if (tutors.vec[mig].codi == codi) {
+            trobat = true;
+        
+        }else if (tutors.vec[mig].codi < codi) {
+            esq = mig + 1;
+
+        }else {
+            dret = mig - 1;
+
+        }
+    }
+
+    if (trobat) {
+        pos = mig;
+
+    }else {
+        pos = esq;
+    }
+}
+
+void inserir_pfg(string nomTutor, Vector_projectes_n &projectes, string codiAlumne, string nomCognom, string titol, string especialitat, string codiTutor) {
+    Projectes nouProjecte;
+    nouProjecte.codiAlumne = codiAlumne;
+    nouProjecte.nomCognomAlumne = nomCognom;
+    nouProjecte.titolProjecte = titol;
+    nouProjecte.especialitat = especialitat;
+    nouProjecte.codiTutor = codiTutor;
+    int i = projectes.n - 1;
+
+    while (i >= 0 && projectes.vec[i].codiAlumne > nouProjecte.codiAlumne)
+    {
+        projectes.vec[i + 1] = projectes.vec[i];
+        i--;
+    }
+    projectes.vec[i + 1] = nouProjecte;
+    projectes.n++;
+    
+    cout << "Nou PFG: " << nouProjecte.titolProjecte << " (" << nouProjecte.especialitat << "), " << nouProjecte.nomCognomAlumne << " (" << nouProjecte.codiAlumne << "), tutor " << nomTutor << " (" << nouProjecte.codiTutor << ")" << endl; 
+
 }
 
 Tutor llegir_tutor(ifstream &f_in, bool primer)
@@ -103,6 +157,108 @@ void omplir_fitxer(Vector_tutors_n &tutors)
     }
 };
 
+void cerca_dicotomica_projectes (const Vector_projectes_n& projectes, string codi, bool& trobat, int& pos) {
+    trobat = false;
+    int esq = 0;
+    int dret = projectes.n - 1;
+    int mig;
+
+    while (not trobat && esq <= dret) {
+        mig = (esq + dret)/2;
+        if (projectes.vec[mig].codiAlumne == codi) {
+            trobat = true;
+        
+        }else if (projectes.vec[mig].codiAlumne < codi) {
+            esq = mig + 1;
+
+        }else {
+            dret = mig - 1;
+
+        }
+    }
+
+    if (trobat) {
+        pos = mig;
+
+    }else {
+        pos = esq;
+    }
+}
+
+int buscar_tutor (const Vector_tutors_n& tutors, string especialitat) {
+    int i = 0;
+    int posicio = -1;
+
+    while (i < tutors.n) {
+        if (tutors.vec[i].assignatura == especialitat) {            
+            if (posicio == -1) {
+                posicio = i;
+
+            }else {
+                if (stoi(tutors.vec[posicio].nombreProjectes) > stoi(tutors.vec[i].nombreProjectes) || tutors.vec[i].codi < tutors.vec[posicio].codi && tutors.vec[posicio].nombreProjectes == tutors.vec[i].nombreProjectes) {
+                    posicio = i;
+
+                } 
+            }
+        }
+        i++;
+    }
+
+    return posicio;
+}
+
+void alta_pfg (Vector_projectes_n &projectes, Vector_tutors_n &tutors) {
+    string codiAlumne, nomCognom, titol, especialitat, codiTutor;
+    char teTutor;
+    bool trobat, trobatTutor;
+    int pos, posTutor;
+
+    cout << "Codi de l'alumne:" <<endl;
+    cin >> codiAlumne;
+    cerca_dicotomica_projectes(projectes, codiAlumne, trobat, pos);
+
+    if (trobat) {
+        cout << "Codi existent" <<endl;
+
+    }else {
+        cout << "Cognoms, nom:" <<endl;
+        cin >> nomCognom;
+
+        cout << "Titol:" <<endl;
+        cin >> titol;
+
+        cout << "Especialitat:" <<endl;
+        cin >> especialitat;
+
+        cout << "Te tutor (s/n):" <<endl;
+        cin >> teTutor;
+
+        if (teTutor == 's') {
+            cout << "Codi tutor:" <<endl;
+            cin >> codiTutor;
+
+            cerca_dicotomica_tutors(tutors, codiTutor,  trobatTutor, posTutor);
+            
+            if (trobatTutor && stoi(tutors.vec[posTutor].nombreProjectes) < 10) {
+                inserir_pfg(tutors.vec[posTutor].nomCognom, projectes, codiAlumne, nomCognom, titol, especialitat, codiTutor);
+
+            }else if (trobatTutor && stoi(tutors.vec[posTutor].nombreProjectes) >= 10) {
+                int posicioTutorNou = buscar_tutor(tutors, especialitat);
+                inserir_pfg(tutors.vec[posTutor].nomCognom, projectes, codiAlumne, nomCognom, titol, especialitat, tutors.vec[posicioTutorNou].codi);
+
+            }else {
+                int posicioTutorNou = buscar_tutor(tutors, especialitat);
+                inserir_pfg(tutors.vec[posicioTutorNou].nomCognom, projectes, codiAlumne, nomCognom, titol, especialitat, tutors.vec[posicioTutorNou].codi);
+            }
+
+        }else {
+            int posicioTutorNou = buscar_tutor(tutors, especialitat);
+            inserir_pfg(tutors.vec[posicioTutorNou].nomCognom, projectes, codiAlumne, nomCognom, titol, especialitat, tutors.vec[posicioTutorNou].codi);
+        }
+    }
+
+}
+
 void cout_tutors(Tutor tutor)
 {
     cout << tutor.nomCognom << " (" << tutor.codi << ") "<< tutor.assignatura << " [" << tutor.nombreProjectes << ":" << tutor.projectesDefensats << "]" << endl;
@@ -118,6 +274,7 @@ void mostrar_tutors(const Vector_tutors_n& tutors) {
 int main()
 {
     Vector_tutors_n tutors;
+    Vector_projectes_n projectes;
 
     omplir_fitxer(tutors);
     menu();
@@ -126,7 +283,7 @@ int main()
     while (opcio != 'S')
     {
         if (opcio == 'A')
-            mostrar_tutors(tutors);
+            alta_pfg(projectes, tutors);
         else if (opcio == 'B')
             mostrar_tutors(tutors);
         else if (opcio == 'P')
