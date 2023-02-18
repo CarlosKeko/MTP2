@@ -204,6 +204,8 @@ int buscar_tutor (const Vector_tutors_n& tutors, string especialitat) {
         i++;
     }
 
+    cout << "S'ha assignat el tutor " << tutors.vec[posicio].nomCognom << " (" << tutors.vec[posicio].codi << "), " << tutors.vec[posicio].assignatura << " [" << tutors.vec[posicio].nombreProjectes << ":" << tutors.vec[posicio].projectesDefensats << "]" << endl;
+
     return posicio;
 }
 
@@ -284,7 +286,14 @@ void moure_vector_projectes (Vector_projectes_n &projectes, int pos) {
 }
 
 void restar_projectes_tutor (Vector_tutors_n &tutors, int pos) {
-    tutors.vec[pos].nombreProjectes = std::to_string(stoi(tutors.vec[pos].nombreProjectes) - 1);
+    int resta = stoi(tutors.vec[pos].nombreProjectes) - 1;
+    tutors.vec[pos].nombreProjectes = std::to_string(resta);
+
+}
+
+void sumar_defenses_tutors (Vector_tutors_n &tutors, int pos) {
+    int suma = stoi(tutors.vec[pos].projectesDefensats) + 1;
+    tutors.vec[pos].projectesDefensats = std::to_string(suma);
 
 }
 
@@ -309,6 +318,38 @@ void baixa_pfg (Vector_projectes_n &projectes, Vector_tutors_n &tutors) {
 
     }
 
+}
+
+void modificar_nota_projectes (Vector_projectes_n &projectes, int pos) {
+    string nota;
+
+    cout << "Nota obtinguda a la defensa:" <<endl;
+    cin >> nota;
+
+    projectes.vec[pos].nota = nota;
+    
+}
+
+void puntuar_pfg (Vector_projectes_n &projectes, Vector_tutors_n &tutors) {
+    string codiPFG;
+    bool trobat, trobatTutor;
+    int pos, posTutor;
+
+    cout << "Codi de l'alumne:" <<endl;
+    cin >> codiPFG;    
+
+    cerca_dicotomica_projectes(projectes, codiPFG, trobat, pos);
+
+    if (!trobat) {
+        cout << "Codi inexistent" <<endl;
+
+    }else {
+        cerca_dicotomica_tutors(tutors, projectes.vec[pos].codiTutor, trobatTutor, posTutor);
+        modificar_nota_projectes(projectes, pos);
+        sumar_defenses_tutors(tutors, posTutor);
+        restar_projectes_tutor(tutors, posTutor);
+
+    }
 }
 
 void cout_tutors(Tutor tutor)
@@ -339,7 +380,7 @@ int main()
         else if (opcio == 'B')
             baixa_pfg(projectes, tutors);
         else if (opcio == 'P')
-            mostrar_tutors(tutors);
+            puntuar_pfg(projectes, tutors);
         else if (opcio == 'C')
             mostrar_tutors(tutors);
         else if (opcio == 'L')
