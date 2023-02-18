@@ -1,0 +1,7 @@
+u2012345 Feixas,_Joan Informatica
+u2001234 Xiberta,_Miquel Videojocs
+u2000123 Vila,_Pau Biomedic
+u2000012 Fort,_Marius Informatica
+u2543210 Munoz,_Marta Videojocs
+u2432100 Surrell,_David Informatica
+u2321100 Figulsm,_Jose_Luis Biomedic
