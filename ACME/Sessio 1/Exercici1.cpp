@@ -259,6 +259,52 @@ void alta_pfg (Vector_projectes_n &projectes, Vector_tutors_n &tutors) {
 
 }
 
+void moure_vector_projectes (Vector_projectes_n &projectes, int pos) {
+    Projectes nouP;
+    if (pos == projectes.n - 1) {
+        projectes.vec[pos] = nouP;
+        projectes.n--;
+
+    }else {
+        while (pos < projectes.n) {
+            if (pos + 1 < projectes.n) {
+                projectes.vec[pos] = projectes.vec[pos + 1];
+
+            }else {
+                projectes.vec[pos] = nouP;
+
+            }
+            
+            pos++;
+        }
+
+        projectes.n--;
+    }
+
+}
+
+//TENGO QUE HACER LO DE QUITAR PROYECTOS A LOS PROFES
+void baixa_pfg (Vector_projectes_n &projectes) {
+    string codiPFG;
+    bool trobat;
+    int pos;
+
+    cout << "Codi de l'alumne:" <<endl;
+    cin >> codiPFG;
+
+    cerca_dicotomica_projectes(projectes, codiPFG, trobat, pos);
+
+    if (!trobat) {
+        cout << "Codi inexistent" <<endl;
+
+    }else {
+        moure_vector_projectes(projectes, pos);
+        cout << "PFG eliminat" <<endl;
+
+    }
+
+}
+
 void cout_tutors(Tutor tutor)
 {
     cout << tutor.nomCognom << " (" << tutor.codi << ") "<< tutor.assignatura << " [" << tutor.nombreProjectes << ":" << tutor.projectesDefensats << "]" << endl;
@@ -285,7 +331,7 @@ int main()
         if (opcio == 'A')
             alta_pfg(projectes, tutors);
         else if (opcio == 'B')
-            mostrar_tutors(tutors);
+            baixa_pfg(projectes);
         else if (opcio == 'P')
             mostrar_tutors(tutors);
         else if (opcio == 'C')
