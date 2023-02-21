@@ -233,12 +233,13 @@ int buscar_tutor (const Vector_tutors_n& tutors, string especialitat) {
     int posicio = -1;
 
     while (i < tutors.n) {
-        if (tutors.vec[i].assignatura == especialitat) {            
+        if (tutors.vec[i].assignatura == especialitat) {     
+
             if (posicio == -1) {
                 posicio = i;
 
             }else {
-                if (stoi(tutors.vec[posicio].nombreProjectes) > stoi(tutors.vec[i].nombreProjectes) || tutors.vec[i].nomCognom > tutors.vec[posicio].nomCognom && stoi(tutors.vec[posicio].nombreProjectes) >= stoi(tutors.vec[i].nombreProjectes)) {
+                if (stoi(tutors.vec[posicio].nombreProjectes) > stoi(tutors.vec[i].nombreProjectes) || tutors.vec[i].codi < tutors.vec[posicio].codi && stoi(tutors.vec[posicio].nombreProjectes) >= stoi(tutors.vec[i].nombreProjectes)) {
                     posicio = i;
 
                 } 
@@ -291,17 +292,20 @@ void alta_pfg (Vector_projectes_n &projectes, Vector_tutors_n &tutors) {
             
             if (trobatTutor && stoi(tutors.vec[posTutor].nombreProjectes) < 10) {
                 inserir_pfg(tutors.vec[posTutor].nomCognom, projectes, codiAlumne, nomCognom, titol, especialitat, codiTutor, true);
+                sumar_projectes_tutor(tutors, posTutor);                
 
             }else if (trobatTutor && stoi(tutors.vec[posTutor].nombreProjectes) >= 10) {
                 int posicioTutorNou = buscar_tutor(tutors, especialitat);
-                inserir_pfg(tutors.vec[posTutor].nomCognom, projectes, codiAlumne, nomCognom, titol, especialitat, tutors.vec[posicioTutorNou].codi, true);
+                inserir_pfg(tutors.vec[posicioTutorNou].nomCognom, projectes, codiAlumne, nomCognom, titol, especialitat, tutors.vec[posicioTutorNou].codi, true);
+                sumar_projectes_tutor(tutors, posicioTutorNou);
 
             }else {
                 int posicioTutorNou = buscar_tutor(tutors, especialitat);
                 inserir_pfg(tutors.vec[posicioTutorNou].nomCognom, projectes, codiAlumne, nomCognom, titol, especialitat, tutors.vec[posicioTutorNou].codi, true);
+                sumar_projectes_tutor(tutors, posicioTutorNou);
             }
 
-            sumar_projectes_tutor(tutors, posTutor);
+
 
         }else {
             int posicioTutorNou = buscar_tutor(tutors, especialitat);
