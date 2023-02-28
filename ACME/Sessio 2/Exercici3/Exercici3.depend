@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1677601547 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 2\exercici3\joc.cpp
+	"Joc.h"
+	<iostream>
+	<iomanip>
+
+1677600281 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 2\exercici3\joc.h
+	<iostream>
+
+1677601164 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 2\exercici3\main.cpp
+	<iostream>
+	"Joc.h"
+

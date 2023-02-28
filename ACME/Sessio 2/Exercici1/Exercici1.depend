@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1677440990 source:c:\users\kekoj\onedrive\escritorio\mtp2\exercici1\data.cpp
+	<iostream>
+	"Data.h"
+
+1677440901 c:\users\kekoj\onedrive\escritorio\mtp2\exercici1\data.h
+	<string>
+
+1677440942 source:c:\users\kekoj\onedrive\escritorio\mtp2\exercici1\main.cpp
+	<iostream>
+	"Data.h"
+
+1677521905 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 2\exercici1\data.cpp
+	<iostream>
+	"Data.h"
+
+1677520433 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 2\exercici1\data.h
+	<string>
+
+1677521794 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 2\exercici1\main.cpp
+	<iostream>
+	"Data.h"
+

@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1677533276 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 2\exercici2\main.cpp
+	<iostream>
+	"Vector.h"
+
+1677531746 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 2\exercici2\vector.h
+	<string>
+
+1677533118 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 2\exercici2\vector.cpp
+	<iostream>
+	"Vector.h"
+	<iomanip>
+
