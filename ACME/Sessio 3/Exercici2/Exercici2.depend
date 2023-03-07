@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1678225894 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 3\exercici2\main.cpp
+	<iostream>
+	"Circumferencia.h"
+
+1678225883 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 3\exercici2\circumferencia.h
+	<iostream>
+
+1678227070 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 3\exercici2\circumferencia.cpp
+	"Circumferencia.h"
+	<iostream>
+	<cmath>
+

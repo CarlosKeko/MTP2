@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Exercici3" />
+		<Option title="Exercici1" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/Exercici3" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Exercici1" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/Exercici3" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Exercici1" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -32,8 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Joc.cpp" />
-		<Unit filename="Joc.h" />
+		<Unit filename="Data.cpp" />
+		<Unit filename="Data.h" />
+		<Unit filename="Llibre.cpp" />
+		<Unit filename="Llibre.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
