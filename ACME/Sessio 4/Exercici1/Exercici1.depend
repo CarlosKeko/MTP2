@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1678792111 source:c:\users\aula\downloads\exercici1-20230314t110802z-001\exercici1\data.cpp
+	<iostream>
+	"Data.h"
+
+1678792111 c:\users\aula\downloads\exercici1-20230314t110802z-001\exercici1\data.h
+	<string>
+
+1678793274 source:c:\users\aula\downloads\exercici1-20230314t110802z-001\exercici1\llibre.cpp
+	"Llibre.h"
+	<iostream>
+	"Data.h"
+
+1678793269 c:\users\aula\downloads\exercici1-20230314t110802z-001\exercici1\llibre.h
+	<iostream>
+	"Data.h"
+
+1678763310 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici1\data.cpp
+	<iostream>
+	"Data.h"
+
+1678763310 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici1\data.h
+	<string>
+
+1678997857 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici1\biblioteca.cpp
+	"Biblioteca.h"
+	"Llibre.h"
+
+1678994495 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici1\biblioteca.h
+	"Llibre.h"
+
+1678994504 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici1\llibre.h
+	<iostream>
+	"Data.h"
+
+1678999658 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici1\llibre.cpp
+	"Llibre.h"
+	<iostream>
+	"Data.h"
+
+1678763310 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici1\main.cpp
+	<iostream>
+	"Biblioteca.h"
+	"Llibre.h"
+
