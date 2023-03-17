@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1679090359 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici2\cim.cpp
+	"Cim.h"
+	<cmath>
+	<iostream>
+
+1679089742 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici2\cim.h
+	<iostream>
+	<cmath>
+
+1679090294 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici2\taulacims.cpp
+	"TaulaCims.h"
+	"Cim.h"
+
+1679087746 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici2\taulacims.h
+	"Cim.h"
+
+1679090145 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 4\exercici2\main.cpp
+	<iostream>
+	<string>
+	<fstream>
+	"TaulaCims.h"
+	"Cim.h"
+
