@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1682017725 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 8\exercici1\data.cpp
+	<iostream>
+	"Data.h"
+
+1682017742 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 8\exercici1\data.h
+	<string>
+
+1682092285 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 8\exercici1\videojoc.cpp
+	"Videojoc.h"
+	"Data.h"
+
+1682091982 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 8\exercici1\videojoc.h
+	"Data.h"
+	<iostream>
+
+1682093859 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 8\exercici1\llista_ord_videojocs.cpp
+	"Llista_ord_videojocs.h"
+
+1682082150 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 8\exercici1\llista_ord_videojocs.h
+	"Videojoc.h"
+	"Data.h"
+
+1682093761 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 8\exercici1\main.cpp
+	<iostream>
+	"Data.h"
+	"Llista_ord_videojocs.h"
+	<fstream>
+	"Videojoc.h"
+	<string>
+
