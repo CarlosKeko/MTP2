@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1681935383 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 7\exercici1\compravenda.cpp
+	"Compravenda.h"
+	<iostream>
+
+1681935240 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 7\exercici1\compravenda.h
+	<iostream>
+
+1681931446 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 7\exercici1\cuacompravenda.cpp
+	"Cuacompravenda.h"
+	"Compravenda.h"
+
+1681931286 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 7\exercici1\cuacompravenda.h
+	<iostream>
+	"Compravenda.h"
+
+1681935654 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 7\exercici1\main.cpp
+	<iostream>
+	"Cuacompravenda.h"
+	"Compravenda.h"
+
