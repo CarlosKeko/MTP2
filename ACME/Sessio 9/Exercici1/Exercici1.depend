@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1682521074 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 9\exercici1\main.cpp
+	<iostream>
+	"Baralla.h"
+
+1682525149 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 9\exercici1\baralla.h
+	"Carta.h"
+
+1682524173 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 9\exercici1\carta.h
+
+1682520649 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 9\exercici1\pilacartes.cpp
+	"PilaCartes.h"
+
+1682520649 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 9\exercici1\pilacartes.h
+
+1682524168 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 9\exercici1\baralla.cpp
+	"Baralla.h"
+	"Carta.h"
+
+1682524197 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 9\exercici1\carta.cpp
+	"Carta.h"
+	<iostream>
+
