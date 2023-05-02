@@ -1,0 +1,21 @@
+u2012345
+Feixas, Joan
+Enginyeria Informatica
+u2001234
+Xiberta, Miquel
+Disseny i Desenvolupament de Videojocs
+u2000123
+Vila, Pau
+Enginyeria Biomedica
+u2000012
+Fort, Marius
+Enginyeria Informatica
+u2543210
+Munoz, Marta
+Disseny i Desenvolupament de Videojocs
+u2432100
+Surrell, David
+Enginyeria Informatica
+u2321100
+Figuls, Jose Luis
+Enginyeria Biomedica
