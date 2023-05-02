@@ -1,0 +1,62 @@
+# depslib dependency file v1.0
+1683066158 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\baralla.cpp
+	"Baralla.h"
+	"Carta.h"
+	<iostream>
+
+1683040623 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\baralla.h
+	"Carta.h"
+	"PilaCartes.h"
+
+1683066548 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\carta.h
+
+1683065346 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\pilacartes.h
+	"Carta.h"
+	<iostream>
+
+1683066543 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\carta.cpp
+	"Carta.h"
+	<iostream>
+
+1683066169 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\jugador.cpp
+	"Jugador.h"
+	"Carta.h"
+	<iostream>
+	"string"
+
+1683042710 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\jugador.h
+	"Carta.h"
+	"string"
+
+1683066556 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\pilacartes.cpp
+	"PilaCartes.h"
+
+1683040637 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\main.cpp
+	<iostream>
+	"Joc.h"
+
+1683051181 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\joc.h
+	"Baralla.h"
+	"PilaCartes.h"
+	"Tauler.h"
+	"Jugador.h"
+	"Carta.h"
+
+1683065645 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\tauler.h
+	"Carta.h"
+	"Baralla.h"
+
+1683065611 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\joc.cpp
+	"Joc.h"
+	<iostream>
+	"Baralla.h"
+	"Jugador.h"
+	"Tauler.h"
+	"PilaCartes.h"
+
+1683066566 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio 10\exercici1\tauler.cpp
+	"Tauler.h"
+	"Carta.h"
+	<iostream>
+	<iomanip>
+
