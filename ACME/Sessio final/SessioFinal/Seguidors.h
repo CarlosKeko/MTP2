@@ -8,20 +8,29 @@ class Seguidors
 public:
     static const int numMagies = 6;
 
+
+    //CONSTRUCOTRS
     Seguidors();
     Seguidors(const Seguidors &o);
     ~Seguidors();
     Seguidors &operator=(const Seguidors &o);
 
+    //CONSULTORS
     bool buida() const;
 
     void mostrarSeguidors(int opcio) const;
 
     bool existeix(Carta e) const;
 
+    bool tenimSeguidorMagia(char magia);
+
+
+    //MODIFICADORS
     void inserir (Carta e);
 
     void eliminar (Carta e);
+
+    bool donarSeguidors(Seguidors& s, char magia);
 
     //void esborra_videojocs_previs_a(Data d);
 

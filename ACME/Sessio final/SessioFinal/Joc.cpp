@@ -9,12 +9,16 @@ Joc::Joc()
 {
     llavor = 0;
     a_nNumTorn = 0;
+    ultimTorn = false;
+    voltesUltimTorn = 0;
 }
 
 Joc::Joc(int ll)
 {
     llavor = ll;
     a_nNumTorn = 0;
+    ultimTorn = false;
+    voltesUltimTorn = 0;
 }
 
 void Joc::afegirJugador(int nJugadors)
@@ -51,6 +55,34 @@ void Joc::mostrarTauler()
     a_tauler.mostrar(pilaEsquerra.cim(), pilaDreta.cim());
 }
 
+bool Joc::numJugadorsValids(int n)
+{
+    if (n > 0 && n <= a_nJugadors)
+    {
+        return true;
+
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Joc::comprobarMaximCartes(int maxim)
+{
+    return a_tJugadors[a_nNumTorn].comprobarMaxim(maxim);
+}
+
+bool Joc::comprobarPosicioTauler(int fila, int columna)
+{
+    return a_tauler.posicioValidaTauler(fila, columna);
+}
+
+bool Joc::comprobarPosicioTaulerBuit(int fila, int columna)
+{
+    return a_tauler.posicioBuida(fila, columna);
+}
+
 void Joc::mostrarMansOponents()
 {
     cout << "\nMANS DELS OPONENTS:" << endl;
@@ -63,6 +95,15 @@ void Joc::mostrarMansOponents()
         }
 
     }
+}
+
+void Joc::comprobarPiles()
+{
+    cout << "PILA ESQUERRA:" << endl;
+    pilaEsquerra.mostrar(2);
+
+    cout << "\nPILA DRETA:" << endl;
+    pilaDreta.mostrar(2);
 }
 
 void Joc::mostrarSeguidors()
@@ -131,7 +172,7 @@ void Joc::ferJugada(Carta c, int fila, int columna)
     if (a_tauler.comptarBuides() == 1)
     {
         sobrecarga = true;
-        cout << "SOBRECARGA TRUEEEE" << endl;
+        //cout << "SOBRECARGA TRUEEEE" << endl;
 
     }
 
@@ -191,10 +232,10 @@ void Joc::ferJugada(Carta c, int fila, int columna)
     {
         for (int i = finsEsquerra; i <= finsDreta; i++)
         {
-            cout << "ENTRA EN EL FOR " << i << endl;
+            //cout << "ENTRA EN EL FOR " << i << endl;
             if (a_tauler.agafarCarta(fila, i).coincideixMagiaGermandat(c) && !a_tauler.agafarCarta(fila, i).esCopia(c))
             {
-                cout << "AGAFA SEGUIDORSSSSS" << endl;
+                //cout << "AGAFA SEGUIDORSSSSS" << endl;
                 a_tJugadors[a_nNumTorn].afegirSeguidor(a_tauler.agafarCarta(fila, i));
                 a_tauler.afegirCartaPosicio(Carta(' ', ' ', 0), fila, i, true);
                 seguidorsAconseguits++;
@@ -207,7 +248,7 @@ void Joc::ferJugada(Carta c, int fila, int columna)
     //COMPROBAMOS ARRIBA COLUMNA
     dentro = true;
     comptadorInfluencia = c.getInfluencia();
-    cout << "\nCOMPTADOR INFLUENCIA " << comptadorInfluencia << endl;
+    //cout << "\nCOMPTADOR INFLUENCIA " << comptadorInfluencia << endl;
     i = fila - 1;
     finsDamunt = fila;
 
@@ -227,7 +268,7 @@ void Joc::ferJugada(Carta c, int fila, int columna)
 
     }
 
-    cout << "\nCOMPTADOR INFLUENCIA ARRIBA " << comptadorInfluencia << endl;
+    //cout << "\nCOMPTADOR INFLUENCIA ARRIBA " << comptadorInfluencia << endl;
 
     //COMPROBAMOS ABAJO COLUMNA
     dentro = true;
@@ -251,14 +292,14 @@ void Joc::ferJugada(Carta c, int fila, int columna)
 
     }
 
-    cout << "\nCOMPTADOR INFLUENCIA ABAJO " << comptadorInfluencia << endl;
+    //cout << "\nCOMPTADOR INFLUENCIA ABAJO " << comptadorInfluencia << endl;
 
     //AGAFEM SEGUIDORS COLUMNA
     if (comptadorInfluencia >= 10)
     {
         for (int i = finsDamunt; i <= finsAsota; i++)
         {
-            cout << "ENTRA EN EL FOR " << i << endl;
+            //cout << "ENTRA EN EL FOR " << i << endl;
             if (a_tauler.agafarCarta(i, columna).coincideixMagiaGermandat(c) && !a_tauler.agafarCarta(i, columna).esCopia(c))
             {
                 a_tJugadors[a_nNumTorn].afegirSeguidor(a_tauler.agafarCarta(i, columna));
@@ -269,18 +310,18 @@ void Joc::ferJugada(Carta c, int fila, int columna)
         }
     }
 
-    cout << "SEGUIDORS ACONSEGUITS: " << seguidorsAconseguits << endl;
+    //cout << "SEGUIDORS ACONSEGUITS: " << seguidorsAconseguits << endl;
 
     //PASEM PER LA SOBRECARGA
     if (sobrecarga && seguidorsAconseguits == 0)
     {
-        cout << "ENTRA SOBRECARGA" << endl;
+        //cout << "ENTRA SOBRECARGA" << endl;
         for (int i = 0; i < a_tauler.getColumnes(); i++)
         {
-            cout << "ENTRA EN EL FOR DE SOBRECARGA: " << i << endl;
+            //cout << "ENTRA EN EL FOR DE SOBRECARGA: " << i << endl;
             if (!a_tauler.agafarCarta(fila, i).coincideixGermandat(c))
             {
-                cout << "AGAFA EL SEGUIDOR QUE NO ES DE LA MATEIXA GERMANDAT" << endl;
+                //cout << "AGAFA EL SEGUIDOR QUE NO ES DE LA MATEIXA GERMANDAT" << endl;
                 a_tJugadors[a_nNumTorn].afegirSeguidor(a_tauler.agafarCarta(fila, i));
                 a_tauler.afegirCartaPosicio(Carta(' ', ' ', 0), fila, i, true);
 
@@ -312,8 +353,36 @@ void Joc::omplirTaulerBruixots(PilaCartes& p)
 
 }
 
+bool Joc::permetTorn() {
+    if (ultimTorn && a_tJugadors[a_nNumTorn].maPlena() || !ultimTorn) {
+        return true;
+
+    }else {
+        return false;
+    }
+
+}
+
+bool Joc::ultimaVoltaCompletada() {
+    if (voltesUltimTorn == a_nJugadors) {
+        return true;
+
+    }else {
+        return false;
+    }
+}
+
+void Joc::posarInfluencia() {
+    for (int i = 0; i < a_nJugadors; i++) {
+        a_tJugadors[i].pasarMaASeguidors();
+    }
+}
+
 void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
 {
+
+    bool pilasBuidas = false;
+
     if (tornActual().posicioCartaValid(posicio))
     {
         if (a_tauler.posicioValidaTauler(fila, columna))
@@ -322,60 +391,67 @@ void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
             {
                 Carta cartaAux = tornActual().agafarCarta(posicio);
 
-                if (pila == 'e')
+                if (!ultimTorn)
                 {
 
-                    if (!pilaEsquerra.buida())
+                    if (pila == 'e')
                     {
 
-                        a_tJugadors[a_nNumTorn].afegirCartaPosicio(pilaEsquerra.cim(), posicio);
-                        pilaEsquerra.desempila();
+                        if (!pilaEsquerra.buida())
+                        {
 
-                    }
-                    else if (!pilaDreta.buida())
-                    {
+                            a_tJugadors[a_nNumTorn].afegirCartaPosicio(pilaEsquerra.cim(), posicio);
+                            pilaEsquerra.desempila();
 
-                        a_tJugadors[a_nNumTorn].afegirCartaPosicio(pilaDreta.cim(), posicio);
-                        pilaDreta.desempila();
+                        }
+                        else if (!pilaDreta.buida())
+                        {
+
+                            a_tJugadors[a_nNumTorn].afegirCartaPosicio(pilaDreta.cim(), posicio);
+                            pilaDreta.desempila();
+
+                        }
+                        else
+                        {
+                            ultimTorn = true;
+                        }
+
+
 
                     }
                     else
                     {
-                        //PONER AQUI APARTADO 5 FINAL DE PARTIDA
-                    }
 
+                        if (!pilaDreta.buida())
+                        {
 
+                            a_tJugadors[a_nNumTorn].afegirCartaPosicio(pilaDreta.cim(), posicio);
+                            pilaDreta.desempila();
 
-                }
-                else
-                {
+                        }
+                        else if (!pilaEsquerra.buida())
+                        {
 
-                    if (!pilaDreta.buida())
-                    {
+                            a_tJugadors[a_nNumTorn].afegirCartaPosicio(pilaEsquerra.cim(), posicio);
+                            pilaEsquerra.desempila();
 
-                        a_tJugadors[a_nNumTorn].afegirCartaPosicio(pilaDreta.cim(), posicio);
-                        pilaDreta.desempila();
-
-                    }
-                    else if (!pilaEsquerra.buida())
-                    {
-
-                        a_tJugadors[a_nNumTorn].afegirCartaPosicio(pilaEsquerra.cim(), posicio);
-                        pilaEsquerra.desempila();
+                        }
+                        else
+                        {
+                            ultimTorn = true;
+                        }
 
                     }
-                    else
-                    {
-                        //PONER AQUI APARTADO 5 FINAL DE PARTIDA
-                    }
 
+                }else {
+                    voltesUltimTorn++;
                 }
 
 
                 ferJugada(cartaAux, fila, columna);
 
 
-                if (a_tauler.comptarBuides() > 4)
+                if (a_tauler.comptarBuides() > 4 && !ultimTorn)
                 {
                     if (pila == 'e')
                     {
@@ -391,7 +467,7 @@ void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
                         }
                         else
                         {
-                            //PONER AQUI APARTADO 5 FINAL DE PARTIDA
+                            ultimTorn = true;
                         }
 
 
@@ -410,7 +486,7 @@ void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
                         }
                         else
                         {
-                            //PONER AQUI APARTADO 5 FINAL DE PARTIDA
+                            ultimTorn = true;
                         }
                     }
                 }
@@ -433,5 +509,18 @@ void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
     {
         cout << "NO HI HA CARTAS A AQUESTA POSICIO" << endl;
 
+    }
+}
+
+bool Joc::jugarAmbInfluencia(char magia, int jugadorEscollit)
+{
+    if(a_tJugadors[a_nNumTorn].donarSeguidors(a_tJugadors[jugadorEscollit], magia))
+    {
+        return true;
+
+    }
+    else
+    {
+        return false;
     }
 }

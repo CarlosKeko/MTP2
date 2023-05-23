@@ -43,6 +43,24 @@ void Jugador::mostrarSeguidors(int opcio) {
     a_seguidors.mostrarSeguidors(opcio);
 }
 
+bool Jugador::maPlena() {
+    int comptador = 0;
+    for (int i = 0; i < numMa; i++) {
+        if (a_ma[i].cartaValida()) {
+            comptador++;
+        }
+
+    }
+
+    if (comptador == numMa) {
+        return true;
+
+    }else {
+        return false;
+    }
+
+}
+
 void Jugador::mostrarEnFila() {
     for (int i = 0; i < a_numElements; i++) {
         a_ma[i].mostrar(3);
@@ -79,4 +97,31 @@ string Jugador::getNom() {
 
 void Jugador::afegirSeguidor(Carta c) {
     a_seguidors.inserir(c);
+}
+
+bool Jugador::donarSeguidors(Jugador& j, char m) {
+    if (a_seguidors.donarSeguidors(j.a_seguidors, m)) {
+        return true;
+
+    }else {
+        return false;
+    }
+}
+
+void Jugador::pasarMaASeguidors() {
+    for (int i = 0; i < numMa; i++) {
+        if (a_ma[i].cartaValida()) {
+            a_seguidors.inserir(a_ma[i]);
+
+        }
+    }
+}
+
+bool Jugador::comprobarMaxim(int maxim) {
+    if (maxim >= 0 && maxim < numMa && a_ma[maxim].cartaValida()) {
+        return true;
+
+    }else {
+        return false;
+    }
 }

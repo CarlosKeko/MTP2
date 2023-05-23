@@ -61,15 +61,6 @@ void Carta::mostrarMagia(int format) {
 
 }
 
-bool Carta::operator>=(const Carta &o) {
-    if (magia >= o.magia) {
-        return true;
-
-    }else {
-        return false;
-    }
-}
-
 bool Carta::cartaValida() {
     if (magia != ' ' && germandat != ' ' && influencia != 0) {
         return true;
@@ -80,14 +71,23 @@ bool Carta::cartaValida() {
     }
 }
 
-bool Carta::operator==(const Carta &o) {
-    /*if (nomVideojoc == o.nomVideojoc) {
+bool Carta::operator>=(const Carta &o) {
+    if (magia >= o.magia) {
         return true;
 
     }else {
         return false;
-    }*/
-    return false;
+    }
+}
+
+bool Carta::operator==(const Carta &o) {
+    if (magia == o.magia && germandat == o.germandat && influencia == o.influencia) {
+        return true;
+
+    }else {
+        return false;
+
+    }
 }
 
 int Carta::getInfluencia() {
@@ -96,11 +96,11 @@ int Carta::getInfluencia() {
 
 bool Carta::coincideixMagiaGermandat(Carta c) {
     if (magia == c.magia || germandat == c.germandat) {
-        cout << "SI QUE COINCIDEIX MAGIA O GERMANDAT" << endl;
+        //cout << "SI QUE COINCIDEIX MAGIA O GERMANDAT" << endl;
         return true;
 
     }else {
-        cout << "NO COINCIDEIX MAGIA O GERMANDAT" << endl;
+        //cout << "NO COINCIDEIX MAGIA O GERMANDAT" << endl;
         return false;
 
     }
@@ -108,11 +108,11 @@ bool Carta::coincideixMagiaGermandat(Carta c) {
 
 bool Carta::esCopia(Carta c) {
     if (magia == c.magia && germandat == c.germandat && influencia == c.influencia) {
-        cout << "ES COPIA" << endl;
+        //cout << "ES COPIA" << endl;
         return true;
 
     }else {
-        cout << "NO ES COPIA" << endl;
+        //cout << "NO ES COPIA" << endl;
         return false;
 
     }

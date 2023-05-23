@@ -14,11 +14,11 @@
 	"Carta.h"
 	<iostream>
 
-1684865722 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\carta.cpp
+1684875257 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\carta.cpp
 	"Carta.h"
 	<iostream>
 
-1684865272 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\joc.cpp
+1684880831 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\joc.cpp
 	"Joc.h"
 	<iostream>
 	"Baralla.h"
@@ -26,7 +26,7 @@
 	"Tauler.h"
 	"PilaCartes.h"
 
-1684865042 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\joc.h
+1684880741 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\joc.h
 	"Baralla.h"
 	"PilaCartes.h"
 	"Tauler.h"
@@ -37,35 +37,35 @@
 	"Carta.h"
 	"Baralla.h"
 
-1684844695 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\jugador.h
+1684879003 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\jugador.h
 	"Carta.h"
 	"string"
 	"Seguidors.h"
 
-1684759017 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\seguidors.h
+1684878589 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\seguidors.h
 	"Carta.h"
 
-1684865215 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\jugador.cpp
+1684879154 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\jugador.cpp
 	"Jugador.h"
 	"Carta.h"
 	<iostream>
 	"string"
 	"Seguidors.h"
 
-1684838315 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\main.cpp
+1684880861 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\main.cpp
 	<iostream>
 	"Joc.h"
 
 1684758986 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\pilacartes.cpp
 	"PilaCartes.h"
 
-1684865709 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\seguidors.cpp
+1684878602 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\seguidors.cpp
 	"Seguidors.h"
 	"Carta.h"
 	<iomanip>
 	<iostream>
 
-1684864326 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\tauler.cpp
+1684873794 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\tauler.cpp
 	"Tauler.h"
 	"Carta.h"
 	<iostream>

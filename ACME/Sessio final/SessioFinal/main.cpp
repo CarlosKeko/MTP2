@@ -8,21 +8,133 @@
 
 using namespace std;
 
-void opcioJ(Joc& joc) {
+bool opcioJ(Joc& joc)
+{
     int posicioCarta, fila, columna;
     char pila;
+    bool dentro = true;
 
-    cout << "ENTRA LA POSICIO DE LA CARTA QUE VOLS COL.LOCAR:" << endl;
-    cin >> posicioCarta;
+    while (dentro)
+    {
+        cout << "ENTRA LA POSICIO DE LA CARTA QUE VOLS COL.LOCAR:" << endl;
+        cin >> posicioCarta;
 
-    cout << "ENTRA LA POSICIO DEL TAULER ON VOLS COL.LOCAR LA CARTA:" << endl;
-    cin >> fila >> columna;
+        if (joc.comprobarMaximCartes(posicioCarta))
+        {
+            dentro = false;
 
-    cout << "DE QUINA PILA VOLS ROBAR LA CARTA? (e/d)" << endl;
-    cin >> pila;
+        }
+        else
+        {
+            cout << "POSICIO NO VALIDA" << endl;
+        }
+
+    }
+    dentro = true;
+
+
+    while (dentro)
+    {
+        cout << "ENTRA LA POSICIO DEL TAULER ON VOLS COL.LOCAR LA CARTA:" << endl;
+        cin >> fila >> columna;
+
+        if (joc.comprobarPosicioTauler(fila, columna))
+        {
+
+            if (!joc.comprobarPosicioTaulerBuit(fila, columna))
+            {
+                cout << "JUGADA NO PERMESA" << endl;
+                cout << "TORNA A INDICAR LA JUGADA" << endl;
+                return false;
+
+            }
+            else
+            {
+                dentro = false;
+
+            }
+
+        }
+        else
+        {
+            cout << "POSICIO NO VALIDA" << endl;
+        }
+
+    }
+    dentro = true;
+
+    while (dentro)
+    {
+        cout << "DE QUINA PILA VOLS ROBAR LA CARTA? (e/d)" << endl;
+        cin >> pila;
+
+        if (pila != 'e' && pila != 'd')
+        {
+            cout << "AQUESTA PILA NO EXISTEIX" << endl;
+
+        }
+        else
+        {
+            dentro = false;
+        }
+
+    }
 
     joc.jugarSenseInfluencia(posicioCarta, fila, columna, pila);
+    return true;
 
+}
+
+void opcioI(Joc &joc)
+{
+    int posicioCarta, fila, columna, jugadorEscollit;
+    char pila, magia, resposta;
+    bool dentro = true;
+
+    while (dentro)
+    {
+        cout << "ENTRA LA MAGIA QUE VOLS CEDIR:" << endl;
+        cin >> magia;
+
+        cout << "ENTRA EL JUGADOR A QUI LA VOLS CEDIR:" << endl;
+        cin >> jugadorEscollit;
+
+        if (!joc.jugarAmbInfluencia(magia, jugadorEscollit - 1))
+        {
+            cout << "MOVIMENT NO VALID" << endl;
+            cout << "ENCARA T'INTERESSA CEDIR INFLUENCIA? (s/n)" << endl;
+            cin >> resposta;
+
+            if (resposta == 'n')
+            {
+                dentro = false;
+
+            }
+
+        }
+        else
+        {
+            dentro = false;
+
+        }
+    }
+    dentro = true;
+
+    while (dentro)
+    {
+        if (opcioJ(joc))
+        {
+            dentro = false;
+        }
+
+    }
+
+    //joc.jugarSenseInfluencia(posicioCarta, fila, columna, pila);
+}
+
+void opcioP(Joc &joc)
+{
+    joc.comprobarPiles();
 }
 
 void entrada_jugadors(Joc& joc)
@@ -32,8 +144,10 @@ void entrada_jugadors(Joc& joc)
     cout << "ENTRA EL NUMERO DE JUGADORS (2-4):" << endl;
     cin >> jugadors;
 
-    while (jugadors < 2 || jugadors > 4) {
-        if (jugadors < 2 || jugadors > 4) {
+    while (jugadors < 2 || jugadors > 4)
+    {
+        if (jugadors < 2 || jugadors > 4)
+        {
             cout << "NUMERO DE JUGADORS INCORRECTE" << endl;
         }
 
@@ -44,7 +158,8 @@ void entrada_jugadors(Joc& joc)
     joc.afegirJugador(jugadors);
 }
 
-void mostrarMenu() {
+void mostrarMenu()
+{
     cout << "\nOPCIONS:" << endl;
     cout << "(I) FER JUGADA CEDINT INFLUENCIA" << endl;
     cout << "(J) FER JUGADA SENSE CEDIR INFLUENCIA" << endl;
@@ -54,7 +169,7 @@ void mostrarMenu() {
 
 int main()
 {
-	unsigned llavor;
+    unsigned llavor;
     char opcio;
 
     cout << "ENTRA LA LLAVOR:" << endl;
@@ -65,43 +180,70 @@ int main()
     entrada_jugadors(joc);
     joc.preparar();
 
-    do {
+    do
+    {
 
-        cout << "\nTORN DE " << joc.tornActual().getNom() << "\n=========================\n" << endl;
+        if (joc.permetTorn() || joc.ultimaVoltaCompletada())
+        {
 
-        joc.mostrarTauler();
+            if (!joc.ultimaVoltaCompletada())
+            {
+                cout << "\nTORN DE " << joc.tornActual().getNom() << "\n=========================\n" << endl;
 
-        joc.tornActual().mostrar();
+                joc.mostrarTauler();
 
-        joc.mostrarMansOponents();
+                joc.tornActual().mostrar();
 
-        joc.mostrarSeguidors();
+                joc.mostrarMansOponents();
 
-        mostrarMenu();
+                joc.mostrarSeguidors();
 
-        cout << "\nENTRA UNA OPCIO:" << endl;
-        cin >> opcio;
+                mostrarMenu();
 
-        switch (opcio) {
-            case 'I':
-                cout << "II" << endl;
-                break;
+                cout << "\nENTRA UNA OPCIO:" << endl;
+                cin >> opcio;
 
-            case 'J':
-                opcioJ(joc);
-                break;
+                switch (opcio)
+                {
+                case 'I':
+                    opcioI(joc);
+                    joc.pasarTorn();
+                    break;
 
-            case 'P':
-                cout << "PP" << endl;
-                break;
+                case 'J':
+                    opcioJ(joc);
+                    joc.pasarTorn();
+                    break;
 
-            case 'F':
-                cout << "FF" << endl;
-                break;
+                case 'P':
+                    opcioP(joc);
+                    break;
+
+                case 'F':
+                    cout << "PARTIDA ABANDONADA" << endl;
+                    break;
+
+                default:
+                    cout << "OPCIO NO DEFINIDA" << endl;
+                    break;
+                }
+
+            }else {
+                joc.posarInfluencia();
+
+
+            }
+
+        }
+        else
+        {
+            joc.pasarTorn();
         }
 
-        joc.pasarTorn();
 
-    }while (opcio != 'F');
+
+
+    }
+    while (opcio != 'F');
 
 }

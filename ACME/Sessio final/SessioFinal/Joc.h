@@ -30,6 +30,19 @@ class Joc
 
         void mostrarSeguidors();
 
+        bool numJugadorsValids(int n);
+
+        bool comprobarMaximCartes(int maxim);
+
+        bool comprobarPosicioTauler(int fila, int columna);
+
+        bool comprobarPosicioTaulerBuit(int fila, int columna);
+
+        void comprobarPiles();
+
+        bool permetTorn();
+
+        bool ultimaVoltaCompletada();
 
         //MODIFICADORS
         void afegirJugador(int nJugadors);
@@ -40,9 +53,13 @@ class Joc
 
         void jugarSenseInfluencia(int posicio, int fila, int columna, char pila);
 
+        bool jugarAmbInfluencia(char magia, int jugadorEscollit);
+
         void ferJugada(Carta c, int fila, int columna);
 
         void omplirTaulerBruixots(PilaCartes& p);
+
+        void posarInfluencia();
 
 
     private:
@@ -55,6 +72,8 @@ class Joc
         PilaCartes pilaDreta;
         int a_nJugadors;
         int a_n;
+        bool ultimTorn;
+        int voltesUltimTorn;
 
 };
 

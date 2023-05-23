@@ -31,12 +31,20 @@ class Jugador
 
         bool posicioCartaValid(int posicio);
 
+        bool comprobarMaxim(int maxim);
+
+        bool maPlena();
+
         //MODIFICADOR
         void afegir(Carta carta);
 
         void afegirCartaPosicio(Carta carta, int pos);
 
         void afegirSeguidor(Carta c);
+
+        bool donarSeguidors(Jugador& j, char m);
+
+        void pasarMaASeguidors();
 
     private:
         string nom;

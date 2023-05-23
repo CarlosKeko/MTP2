@@ -61,7 +61,8 @@ void Seguidors::mostrarSeguidors(int opcio) const
 
             while (p != NULL)
             {
-                if (p->dada.coincideixMagia(a_tMagies[i])) {
+                if (p->dada.coincideixMagia(a_tMagies[i]))
+                {
                     influencia = influencia + p->dada.getInfluencia();
 
                 }
@@ -94,6 +95,39 @@ void Seguidors::mostrarSeguidors(int opcio) const
         p = p->seg;
     }
     cout << endl;*/
+}
+
+void Seguidors::eliminar(Carta e)
+{
+// Pre:--; Post: e s'ha esborrat en el cas que existís; en cas contrari no es fa res
+    //cout << "\nENTRA A ELIMINAR" << endl;
+    Node *ant, *p;
+    bool fiCerca = false;
+    bool trobat = false;
+    ant = NULL;
+    p = a_inici;
+    while((p!=NULL) && (!fiCerca))
+    {
+        if (p->dada >= e)
+        {
+            fiCerca = true;
+            trobat = p->dada == e;
+        }
+        else
+        {
+            ant = p;
+            p = p->seg;
+        }
+    }
+    if (trobat)
+    {
+        //cout << "\nELIMINA EL VALOR" << endl;
+        if(ant!= NULL)
+            ant->seg = p->seg;
+        else a_inici = p->seg;
+        delete p;
+    }
+
 }
 
 void Seguidors::inserir(Carta e)
@@ -180,5 +214,55 @@ Seguidors& Seguidors::operator=(const Seguidors &o)
         copia(o);
     }
     return *this;
+}
+
+bool Seguidors::donarSeguidors(Seguidors& s, char magia)
+{
+    Node *p = a_inici;
+
+    //cout << "\nENTRA A LA FUNCIO DE SEGUIDORS" << endl;
+    if (tenimSeguidorMagia(magia) && !s.tenimSeguidorMagia(magia))
+    {
+        //cout << "\nENTRA AL IF DE SEGUIDORS" << endl;
+        while (p != NULL)
+        {
+            if (p->dada.coincideixMagia(magia)) {
+                //cout << "\n ESTEM DONANT SEGUIDORS" << endl;
+                s.inserir(p->dada);
+                eliminar(p->dada);
+
+            }
+
+            p = p ->seg;
+        }
+
+        return true;
+
+    }else {
+        return false;
+    }
+
+}
+
+bool Seguidors::tenimSeguidorMagia(char magia)
+{
+    Node *p = a_inici;
+    bool trobat = false;
+
+    while (p != NULL && !trobat)
+    {
+
+        if (p->dada.coincideixMagia(magia))
+        {
+            //cout << "\n TROBA LA MAGIA" << endl;
+            trobat = true;
+
+        }
+
+        p = p->seg;
+
+    }
+
+    return trobat;
 }
 

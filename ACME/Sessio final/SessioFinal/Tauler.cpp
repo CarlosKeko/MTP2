@@ -210,7 +210,7 @@ void Tauler::afegirCartaPosicio(Carta c, int f, int co, bool vaciar)
     {
         if (c.cartaValida() && !a_mp[f][co].cartaValida())
         {
-            cout << "\n EL POOSAAAA AL TAULER" << endl;
+            //cout << "\n EL POOSAAAA AL TAULER" << endl;
             a_mp[f][co] = c;
             //mostrar(c, c);
         }
@@ -218,7 +218,7 @@ void Tauler::afegirCartaPosicio(Carta c, int f, int co, bool vaciar)
     else
     {
 
-        cout << "\n EL POOSAAAA AL TAULER" << endl;
+        //cout << "\n EL POOSAAAA AL TAULER" << endl;
         a_mp[f][co] = c;
         //mostrar(c, c);
 
