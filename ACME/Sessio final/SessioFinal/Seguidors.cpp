@@ -39,37 +39,50 @@ void Seguidors::mostrarSeguidors(int opcio) const
 
 
     //if (p == NULL) {
-      //  cout << "\nNO HI HA CAP CARTA" << endl;
+    //  cout << "\nNO HI HA CAP CARTA" << endl;
 
     //}else {
-        if (opcio == 1) {
-                while (p != NULL) {
-                    p->dada.mostrar(1);
-                    p = p->seg;
-                }
+    if (opcio == 1)
+    {
+        while (p != NULL)
+        {
+            p->dada.mostrar(1);
+            p = p->seg;
+        }
 
-        }else {
+    }
+    else
+    {
 
-            for (int i = 0; i < numMagies; i++) {
-                int influencia = 0;
+        for (int i = 0; i < numMagies; i++)
+        {
+            int influencia = 0;
+            p = a_inici;
 
-                while (p != NULL) {
+            while (p != NULL)
+            {
+                if (p->dada.coincideixMagia(a_tMagies[i])) {
                     influencia = influencia + p->dada.getInfluencia();
-                    p = p->seg;
-                }
-                cout << "[" << setfill(' ') << setw(2);
-                if (influencia > 0) {
-                    cout << influencia;
-
-                }else {
-                    cout << ' ';
 
                 }
-
-                cout << a_tMagies[i] << "] ";
+                p = p->seg;
+            }
+            cout << "[" << setfill(' ') << setw(2);
+            if (influencia > 0)
+            {
+                cout << influencia;
 
             }
+            else
+            {
+                cout << ' ';
+
+            }
+
+            cout << a_tMagies[i] << "] ";
+
         }
+    }
 
     //}
 

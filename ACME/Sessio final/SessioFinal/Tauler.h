@@ -35,12 +35,16 @@ public:
 
     int getFilas();
 
+    int comptarBuides();
+
 
     //MODIFICADORS
 
+    void omplirEspaisBuits(Carta c);
+
     void afegirCarta(Carta c);
 
-    void afegirCartaPosicio(Carta c, int f, int co);
+    void afegirCartaPosicio(Carta c, int f, int co, bool vaciar);
 
 
 private:

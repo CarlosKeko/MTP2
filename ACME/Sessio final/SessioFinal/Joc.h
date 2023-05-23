@@ -42,6 +42,8 @@ class Joc
 
         void ferJugada(Carta c, int fila, int columna);
 
+        void omplirTaulerBruixots(PilaCartes& p);
+
 
     private:
         int llavor;

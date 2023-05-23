@@ -96,6 +96,30 @@ int Carta::getInfluencia() {
 
 bool Carta::coincideixMagiaGermandat(Carta c) {
     if (magia == c.magia || germandat == c.germandat) {
+        cout << "SI QUE COINCIDEIX MAGIA O GERMANDAT" << endl;
+        return true;
+
+    }else {
+        cout << "NO COINCIDEIX MAGIA O GERMANDAT" << endl;
+        return false;
+
+    }
+}
+
+bool Carta::esCopia(Carta c) {
+    if (magia == c.magia && germandat == c.germandat && influencia == c.influencia) {
+        cout << "ES COPIA" << endl;
+        return true;
+
+    }else {
+        cout << "NO ES COPIA" << endl;
+        return false;
+
+    }
+}
+
+bool Carta::coincideixGermandat(Carta c) {
+    if (germandat == c.germandat) {
         return true;
 
     }else {
@@ -104,8 +128,8 @@ bool Carta::coincideixMagiaGermandat(Carta c) {
     }
 }
 
-bool Carta::esCopia(Carta c) {
-    if (magia == c.magia && germandat == c.germandat && influencia = c.influencia) {
+bool Carta::coincideixMagia(char c) {
+    if (magia == c) {
         return true;
 
     }else {

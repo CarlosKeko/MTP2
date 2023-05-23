@@ -40,7 +40,7 @@ bool Jugador::posicioCartaValid(int posicio) {
 }
 
 void Jugador::mostrarSeguidors(int opcio) {
-    a_seguidors.mostrarSeguidors(2);
+    a_seguidors.mostrarSeguidors(opcio);
 }
 
 void Jugador::mostrarEnFila() {

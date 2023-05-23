@@ -68,7 +68,8 @@ void Tauler::mostrar(Carta cartaEsquerra, Carta cartaDreta)
     {
         for (int j = 0; j < a_m; j++)
         {
-            if (primeraVez) {
+            if (primeraVez)
+            {
                 cout << setfill(' ') << setw(6) << i;
                 primeraVez = false;
             }
@@ -171,40 +172,113 @@ void Tauler::afegirCarta(Carta c)
 
 }
 
-bool Tauler::posicioValidaTauler(int fila, int columna) {
-    if (fila >= 0 && fila < a_n && columna >= 0 && columna < a_m) {
+bool Tauler::posicioValidaTauler(int fila, int columna)
+{
+    if (fila >= 0 && fila < a_n && columna >= 0 && columna < a_m)
+    {
         return true;
 
-    }else {
+    }
+    else
+    {
         return false;
 
     }
 
 }
 
-bool Tauler::posicioBuida(int fila, int columna) {
-    return a_mp[fila][columna].cartaValida();
+bool Tauler::posicioBuida(int fila, int columna)
+{
 
-}
+    if (a_mp[fila][columna].cartaValida())
+    {
+        return false;
 
-void Tauler::afegirCartaPosicio(Carta c, int f, int co) {
-    if (c.cartaValida() && !a_mp[f][co].cartaValida()) {
-        a_mp[f][co] = c;
+    }
+    else
+    {
+        return true;
     }
 
 }
 
-Carta Tauler::agafarCarta(int fila, int columna) {
+void Tauler::afegirCartaPosicio(Carta c, int f, int co, bool vaciar)
+{
+    //cout << "\nENTRA A LA FUNCIO " << endl;
+
+    if (!vaciar)
+    {
+        if (c.cartaValida() && !a_mp[f][co].cartaValida())
+        {
+            cout << "\n EL POOSAAAA AL TAULER" << endl;
+            a_mp[f][co] = c;
+            //mostrar(c, c);
+        }
+    }
+    else
+    {
+
+        cout << "\n EL POOSAAAA AL TAULER" << endl;
+        a_mp[f][co] = c;
+        //mostrar(c, c);
+
+    }
+
+
+
+}
+
+Carta Tauler::agafarCarta(int fila, int columna)
+{
     return a_mp[fila][columna];
 
 }
 
-int Tauler::getColumnes() {
+int Tauler::getColumnes()
+{
     return a_m;
 }
 
-int Tauler::getFilas() {
+int Tauler::getFilas()
+{
     return a_n;
+}
+
+int Tauler::comptarBuides()
+{
+    int comptador = 0;
+
+    for (int i = 0; i < a_n; i++)
+    {
+        for (int j = 0; j < a_m; j++)
+        {
+            if (!a_mp[i][j].cartaValida())
+            {
+                comptador++;
+            }
+
+        }
+    }
+
+    return comptador;
+}
+
+void Tauler::omplirEspaisBuits(Carta c)
+{
+
+    bool afegit = false;
+
+    for (int i = 0; i < a_n; i++)
+    {
+        for (int j = 0; j < a_m; j++)
+        {
+            if (!afegit && !a_mp[i][j].cartaValida())
+            {
+                a_mp[i][j] = c;
+                afegit = true;
+            }
+        }
+    }
 }
 
 

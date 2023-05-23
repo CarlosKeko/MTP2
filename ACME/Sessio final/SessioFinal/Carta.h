@@ -30,6 +30,10 @@ class Carta
 
         bool esCopia(Carta c);
 
+        bool coincideixGermandat(Carta c);
+
+        bool coincideixMagia(char c);
+
 
         //MODIFICADORS
 
