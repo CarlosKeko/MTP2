@@ -24,6 +24,10 @@ public:
 
     bool tenimSeguidorMagia(char magia);
 
+    int calcularPuntuacio(char magia);
+
+    int getPuntsDecepcio();
+
 
     //MODIFICADORS
     void inserir (Carta e);
@@ -31,6 +35,8 @@ public:
     void eliminar (Carta e);
 
     bool donarSeguidors(Seguidors& s, char magia);
+
+    void controlaMagiaSeguidor(char magia, int puntuacio);
 
     //void esborra_videojocs_previs_a(Data d);
 
@@ -45,6 +51,7 @@ private:
 
     Node *a_inici;
     char a_tMagies[numMagies];
+    int puntsDecepcio;
 
     void copia(const Seguidors &o);
     void allibera();

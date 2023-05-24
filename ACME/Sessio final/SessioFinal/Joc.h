@@ -28,7 +28,9 @@ class Joc
 
         void mostrarMansOponents();
 
-        void mostrarSeguidors();
+        void mostrarSeguidors(bool ultimo);
+
+        void mostrarTotsSeguidors();
 
         bool numJugadorsValids(int n);
 
@@ -44,6 +46,8 @@ class Joc
 
         bool ultimaVoltaCompletada();
 
+        char pilaBuida();
+
         //MODIFICADORS
         void afegirJugador(int nJugadors);
 
@@ -57,9 +61,11 @@ class Joc
 
         void ferJugada(Carta c, int fila, int columna);
 
-        void omplirTaulerBruixots(PilaCartes& p);
+        void omplirTaulerBruixots(PilaCartes& p, PilaCartes& pAux);
 
         void posarInfluencia();
+
+        void calcularPuntuacio();
 
 
     private:

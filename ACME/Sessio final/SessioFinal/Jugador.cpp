@@ -82,6 +82,18 @@ Carta Jugador::agafarCarta(int pos) {
     return a_ma[pos];
 }
 
+void Jugador::controlaMagia(char c, int puntuacio) {
+    a_seguidors.controlaMagiaSeguidor(c, puntuacio);
+}
+
+int Jugador::obtenirDecepcio() {
+    return a_seguidors.getPuntsDecepcio();
+}
+
+int Jugador::calcularMagiaMesAlta(char c) {
+    return a_seguidors.calcularPuntuacio(c);
+}
+
 void Jugador::afegirCartaPosicio(Carta car, int pos) {
     a_ma[pos] = car;
 

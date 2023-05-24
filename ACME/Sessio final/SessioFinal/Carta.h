@@ -37,6 +37,8 @@ class Carta
 
         //MODIFICADORS
 
+        void cambiarInfluencia(int i);
+
     private:
         char magia;
         char germandat;

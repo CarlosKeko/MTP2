@@ -65,18 +65,30 @@ bool opcioJ(Joc& joc)
 
     while (dentro)
     {
-        cout << "DE QUINA PILA VOLS ROBAR LA CARTA? (e/d)" << endl;
-        cin >> pila;
 
-        if (pila != 'e' && pila != 'd')
+        if (joc.pilaBuida() != 'f')
         {
-            cout << "AQUESTA PILA NO EXISTEIX" << endl;
+            pila = joc.pilaBuida();
+            dentro = false;
 
         }
         else
         {
-            dentro = false;
+            cout << "DE QUINA PILA VOLS ROBAR LA CARTA? (e/d)" << endl;
+            cin >> pila;
+
+            if (pila != 'e' && pila != 'd')
+            {
+                cout << "AQUESTA PILA NO EXISTEIX" << endl;
+
+            }
+            else
+            {
+                dentro = false;
+            }
+
         }
+
 
     }
 
@@ -188,7 +200,14 @@ int main()
 
             if (!joc.ultimaVoltaCompletada())
             {
-                cout << "\nTORN DE " << joc.tornActual().getNom() << "\n=========================\n" << endl;
+                cout << "\nTORN DE " << joc.tornActual().getNom() << "\n";
+
+                for (int i = 0; i < joc.tornActual().getNom().length() + 8; i++)
+                {
+                    cout << "=";
+                }
+                cout << "\n" << endl;
+
 
                 joc.mostrarTauler();
 
@@ -196,7 +215,7 @@ int main()
 
                 joc.mostrarMansOponents();
 
-                joc.mostrarSeguidors();
+                joc.mostrarSeguidors(false);
 
                 mostrarMenu();
 
@@ -228,9 +247,15 @@ int main()
                     break;
                 }
 
-            }else {
+            }
+            else
+            {
                 joc.posarInfluencia();
-
+                cout << "\nRESULTAT FINAL\n==============" << endl;
+                joc.mostrarTotsSeguidors();
+                joc.mostrarSeguidors(true);
+                joc.calcularPuntuacio();
+                opcio = 'F';
 
             }
 

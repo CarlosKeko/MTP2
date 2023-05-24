@@ -35,6 +35,12 @@ class Jugador
 
         bool maPlena();
 
+        int calcularMagiaMesAlta(char c);
+
+        void controlaMagia(char c, int puntuacio);
+
+        int obtenirDecepcio();
+
         //MODIFICADOR
         void afegir(Carta carta);
 

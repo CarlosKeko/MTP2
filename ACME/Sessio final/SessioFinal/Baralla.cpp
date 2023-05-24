@@ -115,6 +115,11 @@ void Baralla::mostrar() {
     cout << endl;
 }
 
+char Baralla::obtenirMagia(int n) {
+    cout << "XXXXXXXXX " << a_taulaMagies[0] << endl;
+    return a_taulaMagies[n];
+}
+
 void Baralla::expandeix()
 {
 //Pre: --; Post: la mem�ria reservada es dobla

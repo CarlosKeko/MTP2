@@ -52,7 +52,27 @@ Jugador Joc::tornActual()
 
 void Joc::mostrarTauler()
 {
-    a_tauler.mostrar(pilaEsquerra.cim(), pilaDreta.cim());
+
+    if (pilaEsquerra.buida() && pilaDreta.buida())
+    {
+        a_tauler.mostrar(Carta(' ', ' ', 0), Carta(' ', ' ', 0));
+
+    }
+    else if (pilaEsquerra.buida())
+    {
+        a_tauler.mostrar(Carta(' ', ' ', 0), pilaDreta.cim());
+
+    }
+    else if (pilaDreta.buida())
+    {
+        a_tauler.mostrar(pilaEsquerra.cim(), Carta(' ', ' ', 0));
+
+    }
+    else
+    {
+        a_tauler.mostrar(pilaEsquerra.cim(), pilaDreta.cim());
+
+    }
 }
 
 bool Joc::numJugadorsValids(int n)
@@ -97,31 +117,162 @@ void Joc::mostrarMansOponents()
     }
 }
 
-void Joc::comprobarPiles()
+char Joc::pilaBuida()
 {
-    cout << "PILA ESQUERRA:" << endl;
-    pilaEsquerra.mostrar(2);
+    if (pilaEsquerra.buida())
+    {
+        return 'd';
 
-    cout << "\nPILA DRETA:" << endl;
-    pilaDreta.mostrar(2);
+    }
+    else if (pilaDreta.buida())
+    {
+        return 'e';
+
+    }
+    else
+    {
+        return 'f';
+    }
 }
 
-void Joc::mostrarSeguidors()
+void Joc::comprobarPiles()
 {
-    cout << "\nRESUM DELS SEGUIDORS:" << endl;
+    cout << "\nPILA ESQUERRA:" << endl;
+    if (!pilaEsquerra.buida())
+    {
+        pilaEsquerra.mostrar(2);
 
-    a_tJugadors[a_nNumTorn].mostrarSeguidors(2);
-    cout << " " << a_nNumTorn + 1 << " " << a_tJugadors[a_nNumTorn].getNom() << endl;
+    }
+    else
+    {
+        cout << "NO HI HA CAP CARTA" << endl;
+    }
+
+    cout << "\nPILA DRETA:" << endl;
+    if (!pilaDreta.buida())
+    {
+        pilaDreta.mostrar(2);
+
+    }
+    else
+    {
+        cout << "NO HI HA CAP CARTA" << endl;
+    }
+}
+
+void Joc::mostrarTotsSeguidors()
+{
+
+    cout << "\nTOTS ELS SEGUIDORS:" << endl;
 
     for (int i = 0; i < a_nJugadors; i++)
     {
-        if (i != a_nNumTorn)
+        cout << i + 1 << " " << a_tJugadors[i].getNom() << endl;
+        cout << " ";
+        a_tJugadors[i].mostrarSeguidors(1);
+        cout << endl;
+    }
+
+
+}
+
+void Joc::mostrarSeguidors(bool ultimo)
+{
+
+    if (!ultimo)
+    {
+        cout << "\nRESUM DELS SEGUIDORS:" << endl;
+
+        a_tJugadors[a_nNumTorn].mostrarSeguidors(2);
+        cout << " " << a_nNumTorn + 1 << " " << a_tJugadors[a_nNumTorn].getNom() << endl;
+
+        for (int i = 0; i < a_nJugadors; i++)
         {
-            a_tJugadors[i].mostrarSeguidors(2);
-            cout << " " << i + 1 << " " << a_tJugadors[i].getNom() << endl;
+            if (i != a_nNumTorn)
+            {
+                a_tJugadors[i].mostrarSeguidors(2);
+                cout << " " << i + 1 << " " << a_tJugadors[i].getNom() << endl;
+            }
+
         }
 
     }
+    else
+    {
+        cout << "\nRESUM DELS SEGUIDORS:" << endl;
+
+        for (int i = 0; i < a_nJugadors; i++)
+        {
+
+            a_tJugadors[i].mostrarSeguidors(2);
+            cout << " " << i + 1 << " " << a_tJugadors[i].getNom() << endl;
+
+
+        }
+    }
+
+}
+
+void Joc::calcularPuntuacio()
+{
+    bool dentro = true;
+    int puntuacioAlta;
+    int numMag = a_b.getNumMagies();
+
+    char *a_taulaMagies = new char[6];
+    a_taulaMagies[0] = 'b';
+    a_taulaMagies[1] = 'o';
+    a_taulaMagies[2] = 'p';
+    a_taulaMagies[3] = 'r';
+    a_taulaMagies[4] = 't';
+    a_taulaMagies[5] = 'v';
+
+
+    for (int i = 0; i < numMag; i++)
+    {
+
+        puntuacioAlta = 0;
+        for (int j = 0; j < a_nJugadors; j++)
+        {
+            if (a_tJugadors[j].calcularMagiaMesAlta(a_taulaMagies[i]) > puntuacioAlta)
+            {
+                puntuacioAlta = a_tJugadors[j].calcularMagiaMesAlta(a_taulaMagies[i]);
+
+            }
+
+        }
+
+
+        for (int o = 0; o < a_nJugadors; o++)
+        {
+            a_tJugadors[o].controlaMagia(a_taulaMagies[i], puntuacioAlta);
+
+        }
+
+
+    }
+
+    cout << "\nPUNTS DE DECEPCIO:" << endl;
+    int puntuacioMesBaixa;
+    string nom;
+
+    puntuacioMesBaixa = a_tJugadors[0].obtenirDecepcio();
+    nom = a_tJugadors[0].getNom();
+    cout << " " << puntuacioMesBaixa << " " << a_tJugadors[0].getNom() << endl;
+
+    for (int i = 1; i < a_nJugadors; i++)
+    {
+        cout << " " << a_tJugadors[i].obtenirDecepcio() << " " << a_tJugadors[i].getNom() << endl;
+
+        if (a_tJugadors[i].obtenirDecepcio() < puntuacioMesBaixa)
+        {
+            nom = a_tJugadors[i].getNom();
+        }
+    }
+
+    cout << "\nENHORABONA " << nom << "! HAS GUANYAT LA PARTIDA!" << endl;
+
+
 
 }
 
@@ -341,39 +492,57 @@ void Joc::ferJugada(Carta c, int fila, int columna)
 
 }
 
-void Joc::omplirTaulerBruixots(PilaCartes& p)
+void Joc::omplirTaulerBruixots(PilaCartes& p, PilaCartes& pAux)
 {
     int llocsBuits = a_tauler.comptarBuides();
     for (int i = 4; i < llocsBuits; i++)
     {
+        if (!p.buida())
+        {
+            a_tauler.omplirEspaisBuits(p.cim());
+            p.desempila();
 
-        a_tauler.omplirEspaisBuits(p.cim());
-        p.desempila();
+        }
+        else if (!pAux.buida())
+        {
+            a_tauler.omplirEspaisBuits(pAux.cim());
+            pAux.desempila();
+        }
     }
 
 }
 
-bool Joc::permetTorn() {
-    if (ultimTorn && a_tJugadors[a_nNumTorn].maPlena() || !ultimTorn) {
+bool Joc::permetTorn()
+{
+    if (ultimTorn && a_tJugadors[a_nNumTorn].maPlena() || !ultimTorn)
+    {
         return true;
 
-    }else {
+    }
+    else
+    {
         return false;
     }
 
 }
 
-bool Joc::ultimaVoltaCompletada() {
-    if (voltesUltimTorn == a_nJugadors) {
+bool Joc::ultimaVoltaCompletada()
+{
+    if (voltesUltimTorn == a_nJugadors)
+    {
         return true;
 
-    }else {
+    }
+    else
+    {
         return false;
     }
 }
 
-void Joc::posarInfluencia() {
-    for (int i = 0; i < a_nJugadors; i++) {
+void Joc::posarInfluencia()
+{
+    for (int i = 0; i < a_nJugadors; i++)
+    {
         a_tJugadors[i].pasarMaASeguidors();
     }
 }
@@ -403,6 +572,7 @@ void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
                             a_tJugadors[a_nNumTorn].afegirCartaPosicio(pilaEsquerra.cim(), posicio);
                             pilaEsquerra.desempila();
 
+
                         }
                         else if (!pilaDreta.buida())
                         {
@@ -443,7 +613,10 @@ void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
 
                     }
 
-                }else {
+                }
+                else
+                {
+                    a_tJugadors[a_nNumTorn].afegirCartaPosicio(Carta(' ', ' ', 0), posicio);
                     voltesUltimTorn++;
                 }
 
@@ -457,12 +630,12 @@ void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
                     {
                         if (!pilaEsquerra.buida())
                         {
-                            omplirTaulerBruixots(pilaEsquerra);
+                            omplirTaulerBruixots(pilaEsquerra, pilaDreta);
 
                         }
                         else if (!pilaDreta.buida())
                         {
-                            omplirTaulerBruixots(pilaDreta);
+                            omplirTaulerBruixots(pilaDreta, pilaEsquerra);
 
                         }
                         else
@@ -476,12 +649,12 @@ void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
                     {
                         if (!pilaDreta.buida())
                         {
-                            omplirTaulerBruixots(pilaDreta);
+                            omplirTaulerBruixots(pilaDreta, pilaEsquerra);
 
                         }
                         else if (!pilaEsquerra.buida())
                         {
-                            omplirTaulerBruixots(pilaEsquerra);
+                            omplirTaulerBruixots(pilaEsquerra, pilaDreta);
 
                         }
                         else
@@ -514,6 +687,11 @@ void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
 
 bool Joc::jugarAmbInfluencia(char magia, int jugadorEscollit)
 {
+    if (jugadorEscollit < 0 || jugadorEscollit >= a_nJugadors)
+    {
+        return false;
+    }
+
     if(a_tJugadors[a_nNumTorn].donarSeguidors(a_tJugadors[jugadorEscollit], magia))
     {
         return true;

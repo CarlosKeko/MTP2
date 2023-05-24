@@ -15,6 +15,7 @@ Seguidors::Seguidors()
     a_tMagies[3] = 'r';
     a_tMagies[4] = 't';
     a_tMagies[5] = 'v';
+    puntsDecepcio = 0;
 }
 
 
@@ -23,6 +24,7 @@ Seguidors::Seguidors(const Seguidors &o)
 // Pre:--; Post: la llista es c�pia de o
     a_inici = NULL;
     copia(o);
+    puntsDecepcio = 0;
 }
 
 bool Seguidors::buida() const
@@ -226,7 +228,8 @@ bool Seguidors::donarSeguidors(Seguidors& s, char magia)
         //cout << "\nENTRA AL IF DE SEGUIDORS" << endl;
         while (p != NULL)
         {
-            if (p->dada.coincideixMagia(magia)) {
+            if (p->dada.coincideixMagia(magia))
+            {
                 //cout << "\n ESTEM DONANT SEGUIDORS" << endl;
                 s.inserir(p->dada);
                 eliminar(p->dada);
@@ -238,10 +241,94 @@ bool Seguidors::donarSeguidors(Seguidors& s, char magia)
 
         return true;
 
-    }else {
+    }
+    else
+    {
         return false;
     }
 
+}
+
+int Seguidors::calcularPuntuacio(char magia)
+{
+
+    int puntuacio = 0;
+    Node *p = a_inici;
+
+    while (p != NULL)
+    {
+
+        if (p->dada.coincideixMagia(magia))
+        {
+            puntuacio = puntuacio + p->dada.getInfluencia();
+        }
+        p = p->seg;
+    }
+
+    return puntuacio;
+
+}
+
+void Seguidors::controlaMagiaSeguidor(char magia, int puntuacio)
+{
+    Node *p = a_inici;
+    int punt = 0;
+
+
+
+    while (p != NULL)
+    {
+        if (p->dada.coincideixMagia(magia))
+        {
+            punt = punt + p->dada.getInfluencia();
+
+        }
+        p = p->seg;
+    }
+
+    //cout << "\nTOMA PUNT " << punt <<  endl;
+
+    if (punt == puntuacio)
+    {
+        //cout << "\nENTRAAAA" << endl;
+
+        p = a_inici;
+
+        while (p != NULL)
+        {
+            if (p->dada.coincideixMagia(magia))
+            {
+                p->dada.cambiarInfluencia(0);
+                //cout << "CAMBIA INFLUENCIAAA " << p->dada.getInfluencia() << endl;
+
+            }
+            p = p->seg;
+        }
+
+
+    }
+
+
+
+
+
+}
+
+int Seguidors::getPuntsDecepcio()
+{
+    Node *p = a_inici;
+
+    while (p != NULL)
+    {
+        //cout << "PUNTS INFLUENCAISACSACAS " << p->dada.getInfluencia() << endl;
+        puntsDecepcio = puntsDecepcio + p->dada.getInfluencia();
+
+        p = p->seg;
+
+    }
+
+    //cout << "\n PUNTOS ANTES DE SALIRRR: " << puntsDecepcio << endl;
+    return puntsDecepcio;
 }
 
 bool Seguidors::tenimSeguidorMagia(char magia)

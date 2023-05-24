@@ -38,6 +38,8 @@ public:
 
     int getNumMagies();
 
+    char obtenirMagia(int n);
+
 
     //MODIFICADORS
     void afegirCartaPila(PilaCartes &pU, PilaCartes &pDos);

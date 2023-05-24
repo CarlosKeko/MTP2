@@ -1,24 +1,24 @@
 # depslib dependency file v1.0
-1684758843 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\baralla.cpp
+1684939531 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\baralla.cpp
 	"Baralla.h"
 	"Carta.h"
 	<iostream>
 
-1684758853 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\baralla.h
+1684930496 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\baralla.h
 	"Carta.h"
 	"PilaCartes.h"
 
-1684865725 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\carta.h
+1684931783 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\carta.h
 
 1684758995 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\pilacartes.h
 	"Carta.h"
 	<iostream>
 
-1684875257 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\carta.cpp
+1684944890 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\carta.cpp
 	"Carta.h"
 	<iostream>
 
-1684880831 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\joc.cpp
+1684942267 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\joc.cpp
 	"Joc.h"
 	<iostream>
 	"Baralla.h"
@@ -26,7 +26,7 @@
 	"Tauler.h"
 	"PilaCartes.h"
 
-1684880741 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\joc.h
+1684939793 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\joc.h
 	"Baralla.h"
 	"PilaCartes.h"
 	"Tauler.h"
@@ -37,29 +37,29 @@
 	"Carta.h"
 	"Baralla.h"
 
-1684879003 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\jugador.h
+1684933254 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\jugador.h
 	"Carta.h"
 	"string"
 	"Seguidors.h"
 
-1684878589 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\seguidors.h
+1684931984 c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\seguidors.h
 	"Carta.h"
 
-1684879154 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\jugador.cpp
+1684933696 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\jugador.cpp
 	"Jugador.h"
 	"Carta.h"
 	<iostream>
 	"string"
 	"Seguidors.h"
 
-1684880861 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\main.cpp
+1684942390 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\main.cpp
 	<iostream>
 	"Joc.h"
 
 1684758986 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\pilacartes.cpp
 	"PilaCartes.h"
 
-1684878602 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\seguidors.cpp
+1684942106 source:c:\users\kekoj\onedrive\escritorio\mtp2\acme\sessio final\sessiofinal\seguidors.cpp
 	"Seguidors.h"
 	"Carta.h"
 	<iomanip>
