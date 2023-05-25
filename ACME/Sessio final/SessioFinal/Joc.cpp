@@ -552,6 +552,10 @@ void Joc::jugarSenseInfluencia(int posicio, int fila, int columna, char pila)
 
     bool pilasBuidas = false;
 
+    if (pilaEsquerra.buida() && pilaDreta.buida()) {
+        ultimTorn = true;
+    }
+
     if (tornActual().posicioCartaValid(posicio))
     {
         if (a_tauler.posicioValidaTauler(fila, columna))
